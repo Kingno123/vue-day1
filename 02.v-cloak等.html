@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie-edge">
+		<title>c-cloak</title>
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!---->
+			
+			<!--使用 v-cloak 能够解决 插值表达式的闪烁问题-->
+			<p v-cloak>----{{msg}}++++</p>
+			
+			<!--默认 v-text 没有闪烁问题-->
+			<p v-text="msg">++++++++++++</p>
+			<!-- v-text、v-html会覆盖元素中原本的内容，但是 插值表达式 只会替换自己的这个占位符，不会把整个元素的内容清空-->
+			
+			<div>{{msg2}}</div>
+			<div v-html="msg2">+++++++++++</div>
+			
+			<!--v-bind 用于绑定属性的指令，里面可以用+‘’写合法的js表达式，可以简写成 ：要绑定的属性-->
+			<!--<input type="button" value="我是一个按钮" v-bind:title="mytitle + ' 我是补充的 '"/>-->
+		    
+		    <input type="button" value="点我看看" v-bind:title="mytitle + ' 我是补充的 '" id="btn"/>
+		    
+			<!--vue 中提供 v-on: 事件绑定机制 -->
+			<input type="button" value="再点我看看" :title="ahahaha" v-on:click="show"/>
+
+		
+		
+		</div>
+		
+		
+		<script src="js/vue-2.4.0.js"></script>
+		<script>
+			var vm = new Vue({
+				el:'#app',
+				data:{
+					msg:'123',
+					msg2:'<h1>好好学习，天天向上</h1>',
+					mytitle:'这是一个自己定义的title'		
+				},
+				
+				methods:{//这个 methods 属性中定义了当前 vue实例 中所有可用的方法
+					show:function(){
+						alert('这是一个由 methods 实现的弹窗')
+					}
+				}
+				
+			})
+			
+			document.getElementById('btn').onclick = function(){
+				alert('这是一个弹窗提示')
+			}
+			
+		</script>
+		
+		
+	</body>
+</html>
+
+<!-- 1.如何定义一个基本的vue代码结构-->
+<!--导入包<script src="js/vue-2.4.0.js"></script>-->
+<!--基本结构：
+ <div id="app">
+			<p >{{msg}}</p>
+		</div>
+		<script>
+			//我们 new 出来的这个VM对象,就是我们M-V-VM中的 VM调度者
+			var vm =new Vue({
+				el:'#app',
+				//这里的 data 就是 M-V-VM 中的 M,专门用来保存每个页面的数据
+				data:{
+					msg:'好好学习，天天向上!'
+				}
+			})
+		</script>
+-->
+
+<!-- 2. 插值表达式 和 v-text（覆盖） -->
+<!-- 3.v-cloakv-cloak 能解决 插值表达式的闪烁问题)-->
+<!-- 4.v-html(  <div v-html="msg2">  )-->
+<!-- 5.v-bind 属性绑定机制 缩写是 ：-->
+<!-- 6.v-on   事件绑定机制 缩写是 @ -->
