@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>计算器</title>
+		<!---->
+		<script src="js/vue-2.4.0.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			 <input type="text" v-model="n1"/>
+			 
+			 <select v-model="opt">
+				 <option value="+">+</option>
+				 <option value="-">-</option>
+				 <option value="*">*</option>
+				 <option value="/">/</option>
+			 </select>
+			 
+			 <input type="text" v-model="n2"/>
+			 
+			 <input type="button" value="="  @click="calc"/>
+			 <input type="text" v-model="result"/>
+		</div>
+		
+		<script>
+			//我们 new 出来的这个VM对象,就是我们M-V-VM中的 VM调度者
+			var vm =new Vue({
+				el:'#app',
+				//这里的 data 就是 M-V-VM 中的 M,专门用来保存每个页面的数据
+				data:{
+					n1:0,
+					n2:0,
+					result:0,
+					opt:'+'
+				},
+				methods:{
+					calc(){//计算器算术的方法
+ 					//逻辑
+					switch(this.opt){
+						case '+':
+						this.result = parseInt(this.n1) + parseInt(this.n2)
+						break;
+						case '-':
+						this.result = parseInt(this.n1) - parseInt(this.n2)
+						break;
+						case '*':
+						this.result = parseInt(this.n1) * parseInt(this.n2)
+						break;
+						case '/':
+						this.result = parseInt(this.n1) / parseInt(this.n2)
+						break;
+					}
+//                     //注意： 这是投机取巧的方式,正式开发中，尽量少用
+// 					var codeStr = 'parseInt(this.n1)'+ this.opt +'parseInt(this.n2)'	
+// 					this.result = eval(codeStr)
+					}
+				}
+			})
+			
+		
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>v-for和key</title>
+		<script src="js/vue-2.4.0.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				<label>ID:
+				<input type="text" v-model="id"/>
+				</label>
+				
+				<label>Name:
+				<input type="text" v-model="name" />
+				</label>
+				<input type="button" value="添加" @click="add"/>
+			</div>
+			<!-- 注意：v-for循环的时候，key属性只能使用 number（数字） 获取 number对应的string(字符串) -->
+			<!-- 注意：key 在使用的时候，必须使用 v-bind 属性绑定的形式，指定key的值 -->
+			<!-- 在组件中，使用v-for循环的时候，或者在一些特殊的情况中，如果v-for有问题，必须在使用v-for的同时，指定 唯一的 字符串/数字 类型：key的值 -->
+			<p v-for="item in list" v-bind:key="item.id">
+				<input type="checkbox"/>{{item.id}} --- {{item.name}}
+			</p>
+		</div>
+		<script>
+			//我们 new 出来的这个VM对象,就是我们M-V-VM中的 VM调度者
+			var vm =new Vue({
+				el:'#app',
+				//这里的 data 就是 M-V-VM 中的 M,专门用来保存每个页面的数据
+				data:{
+					id:'',
+					name:'',
+					list:[
+						{id:1,name:'wjm1'},
+						{id:2,name:'wjm2'},
+						{id:3,name:'wjm3'},
+						{id:4,name:'wjm4'}
+					]
+				},
+				methods:{
+					add(){//添加方法
+						// this.list.push({ id:this.id,name:this.name}
+						this.list.unshift({ id:this.id,name:this.name}
+
+						)
+					}
+				}
+			});
+		</script>
+		
+	</body>
+</html>

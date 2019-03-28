@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>vue内联样式style</title>
+		<script src="js/vue-2.4.0.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 对象就是无序键值对的集合 -->
+			<!-- <h1  :style="{ color:'red','font-weight':200 }">学习雷锋好榜样！</h1> -->
+		
+		    <!-- <h1  :style="styleobj1">学习雷锋好榜样！</h1> -->
+			<h1  :style="[ styleobj1 , styleobj2 ]">学习雷锋好榜样！</h1>
+
+
+		</div>
+		<script>
+			//我们 new 出来的这个VM对象,就是我们M-V-VM中的 VM调度者
+			var vm =new Vue({
+				el:'#app',
+				//这里的 data 就是 M-V-VM 中的 M,专门用来保存每个页面的数据
+				data:{
+					styleobj1:{ color:'red','font-weight':200 },
+					styleobj2:{'font-style':'italic'}
+				},
+				methods:{}
+			});
+		</script>
+		
+	</body>
+</html>
